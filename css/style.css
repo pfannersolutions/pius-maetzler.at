@@ -122,6 +122,9 @@ main {
 	margin: 0;
 	font-size: clamp(1.4rem, 3.2vw, 2.4rem);
 	line-height: 1.2;
+	font-family: 'palatino linotype', georgia, serif;
+	font-style: italic;
+	text-align: center;
 	color: #3a342b;
 	letter-spacing: 0.01em;
 	text-wrap: balance;
