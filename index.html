@@ -10,50 +10,10 @@
 </head>
 <body>
 	<main>
-		<section id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4200" aria-label="Bildergalerie">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Bild 1"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Bild 2"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Bild 3"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Bild 4"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Bild 5"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="5" aria-label="Bild 6"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="6" aria-label="Bild 7"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="7" aria-label="Bild 8"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="8" aria-label="Bild 9"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="9" aria-label="Bild 10"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="10" aria-label="Bild 11"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="11" aria-label="Bild 12"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="12" aria-label="Bild 13"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="13" aria-label="Bild 14"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="14" aria-label="Bild 15"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="15" aria-label="Bild 16"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="16" aria-label="Bild 17"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="17" aria-label="Bild 18"></button>
-				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="18" aria-label="Bild 19"></button>
-			</div>
+		<section id="heroCarousel" class="carousel slide" aria-label="Bildergalerie">
+			<div class="carousel-indicators" id="galleryIndicators"></div>
 
-			<div class="carousel-inner">
-				<div class="carousel-item active"><img src="img/gallery/001.jpg" class="d-block w-100" alt="Galeriebild 1"></div>
-				<div class="carousel-item"><img src="img/gallery/002.jpg" class="d-block w-100" alt="Galeriebild 2"></div>
-				<div class="carousel-item"><img src="img/gallery/003.jpg" class="d-block w-100" alt="Galeriebild 3"></div>
-				<div class="carousel-item"><img src="img/gallery/004.jpg" class="d-block w-100" alt="Galeriebild 4"></div>
-				<div class="carousel-item"><img src="img/gallery/005.jpg" class="d-block w-100" alt="Galeriebild 5"></div>
-				<div class="carousel-item"><img src="img/gallery/006.jpg" class="d-block w-100" alt="Galeriebild 6"></div>
-				<div class="carousel-item"><img src="img/gallery/007.jpg" class="d-block w-100" alt="Galeriebild 7"></div>
-				<div class="carousel-item"><img src="img/gallery/008.jpg" class="d-block w-100" alt="Galeriebild 8"></div>
-				<div class="carousel-item"><img src="img/gallery/009.jpg" class="d-block w-100" alt="Galeriebild 9"></div>
-				<div class="carousel-item"><img src="img/gallery/010.jpg" class="d-block w-100" alt="Galeriebild 10"></div>
-				<div class="carousel-item"><img src="img/gallery/011.jpg" class="d-block w-100" alt="Galeriebild 11"></div>
-				<div class="carousel-item"><img src="img/gallery/012.jpg" class="d-block w-100" alt="Galeriebild 12"></div>
-				<div class="carousel-item"><img src="img/gallery/013.jpg" class="d-block w-100" alt="Galeriebild 13"></div>
-				<div class="carousel-item"><img src="img/gallery/014.jpg" class="d-block w-100" alt="Galeriebild 14"></div>
-				<div class="carousel-item"><img src="img/gallery/015.jpg" class="d-block w-100" alt="Galeriebild 15"></div>
-				<div class="carousel-item"><img src="img/gallery/016.jpg" class="d-block w-100" alt="Galeriebild 16"></div>
-				<div class="carousel-item"><img src="img/gallery/017.jpg" class="d-block w-100" alt="Galeriebild 17"></div>
-				<div class="carousel-item"><img src="img/gallery/018.jpg" class="d-block w-100" alt="Galeriebild 18"></div>
-				<div class="carousel-item"><img src="img/gallery/019.jpg" class="d-block w-100" alt="Galeriebild 19"></div>
-			</div>
+			<div class="carousel-inner" id="galleryInner"></div>
 
 			<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -72,5 +32,152 @@
 	</main>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		const galleryPath = "img/gallery/";
+		const supportedExtensions = ["jpg", "jpeg", "png", "webp", "gif", "avif"];
+
+		const carouselElement = document.getElementById("heroCarousel");
+		const innerElement = document.getElementById("galleryInner");
+		const indicatorsElement = document.getElementById("galleryIndicators");
+		const controls = carouselElement.querySelectorAll(".carousel-control-prev, .carousel-control-next");
+
+		function encodePathSegments(path) {
+			return path
+				.split("/")
+				.map((segment) => encodeURIComponent(segment))
+				.join("/");
+		}
+
+		async function listFromDirectoryIndex() {
+			try {
+				const response = await fetch(galleryPath, { cache: "no-store" });
+				if (!response.ok) {
+					return [];
+				}
+
+				const html = await response.text();
+				const doc = new DOMParser().parseFromString(html, "text/html");
+				const links = Array.from(doc.querySelectorAll("a"));
+
+				const files = links
+					.map((link) => decodeURIComponent(link.getAttribute("href") || ""))
+					.map((href) => href.split("?")[0].split("#")[0])
+					.filter((href) => href && !href.endsWith("/") && href !== "..")
+					.filter((href) => {
+						const ext = href.split(".").pop();
+						return ext && supportedExtensions.includes(ext.toLowerCase());
+					})
+					.map((href) => href.split("/").pop());
+
+				const unique = Array.from(new Set(files));
+				unique.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }));
+				return unique;
+			} catch {
+				return [];
+			}
+		}
+
+		function imageExists(url) {
+			return new Promise((resolve) => {
+				const img = new Image();
+				img.onload = () => resolve(true);
+				img.onerror = () => resolve(false);
+				img.src = `${url}?t=${Date.now()}`;
+			});
+		}
+
+		async function listSequentialFallback() {
+			const found = [];
+			let missesInRow = 0;
+			const maxMissesInRow = 12;
+			const maxSequenceNumber = 400;
+
+			for (let i = 1; i <= maxSequenceNumber && missesInRow < maxMissesInRow; i += 1) {
+				const base = String(i).padStart(3, "0");
+				const candidates = supportedExtensions.map((ext) => `${base}.${ext}`);
+
+				let matched = null;
+				for (const candidate of candidates) {
+					const exists = await imageExists(`${galleryPath}${encodePathSegments(candidate)}`);
+					if (exists) {
+						matched = candidate;
+						break;
+					}
+				}
+
+				if (matched) {
+					found.push(matched);
+					missesInRow = 0;
+				} else {
+					missesInRow += 1;
+				}
+			}
+
+			return found;
+		}
+
+		function renderCarousel(files) {
+			files.forEach((file, index) => {
+				const indicator = document.createElement("button");
+				indicator.type = "button";
+				indicator.setAttribute("data-bs-target", "#heroCarousel");
+				indicator.setAttribute("data-bs-slide-to", String(index));
+				indicator.setAttribute("aria-label", `Bild ${index + 1}`);
+				if (index === 0) {
+					indicator.classList.add("active");
+					indicator.setAttribute("aria-current", "true");
+				}
+				indicatorsElement.appendChild(indicator);
+
+				const item = document.createElement("div");
+				item.className = `carousel-item${index === 0 ? " active" : ""}`;
+
+				const image = document.createElement("img");
+				image.className = "d-block w-100";
+				image.src = `${galleryPath}${encodePathSegments(file)}`;
+				image.alt = `Galeriebild ${index + 1}`;
+
+				item.appendChild(image);
+				innerElement.appendChild(item);
+			});
+
+			if (files.length < 2) {
+				controls.forEach((control) => {
+					control.style.display = "none";
+				});
+				indicatorsElement.style.display = "none";
+			}
+
+			if (window.bootstrap && files.length > 0) {
+				new bootstrap.Carousel(carouselElement, {
+					interval: 4200,
+					pause: false,
+					wrap: true,
+					touch: true
+				});
+			}
+		}
+
+		async function initGallery() {
+			const indexedFiles = await listFromDirectoryIndex();
+			const files = indexedFiles.length > 0 ? indexedFiles : await listSequentialFallback();
+
+			if (files.length === 0) {
+				controls.forEach((control) => {
+					control.style.display = "none";
+				});
+				const empty = document.createElement("div");
+				empty.className = "carousel-item active";
+				empty.innerHTML = '<div class="d-flex align-items-center justify-content-center h-100">Keine Bilder in img/gallery gefunden.</div>';
+				innerElement.appendChild(empty);
+				indicatorsElement.style.display = "none";
+				return;
+			}
+
+			renderCarousel(files);
+		}
+
+		initGallery();
+	</script>
 </body>
 </html>
